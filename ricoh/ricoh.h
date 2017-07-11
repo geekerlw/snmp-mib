@@ -14,3 +14,8 @@ const struct ricohSysDescr = {
 	mibObject ricohSysMIBVersion;
 	mibObject ricohSysDeviceID;
 };
+
+/* Serial number(string) of the plotter engine. */
+const struct ricohEngDescr = {
+	mibObject ricohEngSerialNumber;
+};

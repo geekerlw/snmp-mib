@@ -60,3 +60,11 @@ ricohSysDeviceID.description = "ID represented by string which is equivalent of 
 ricohSysDeviceID.oid = ".1.3.6.1.4.1.367.3.2.1.1.1.11.0";
 ricohSysDeviceID.syntax = 2;
 ricohSysDeviceID.access = 0 ;
+
+
+/* Serial number (string) of the plotter engine. */
+mibObject ricohEngSerialNumber;
+ricohEngSerialNumber.description = "Serial number (string) of the plotter engine.";
+ricohEngSerialNumber.oid = ".1.3.6.1.4.1.367.3.2.1.2.1";
+ricohEngSerialNumber.syntax = 2;
+ricohEngSerialNumber.access = 0;
