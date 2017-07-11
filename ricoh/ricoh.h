@@ -12,5 +12,5 @@ const struct ricohSysDescr = {
 	mibObject ricohSysLanguage;
 	mibObject ricohSysCountry;
 	mibObject ricohSysMIBVersion;
-	mibObject ricochSysDeviceID;
+	mibObject ricohSysDeviceID;
 };
