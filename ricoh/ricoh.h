@@ -19,3 +19,18 @@ const struct ricohSysDescr = {
 const struct ricohEngDescr = {
 	mibObject ricohEngSerialNumber;
 };
+
+/* ricoh status objects */
+const struct ricohEngStatus = {
+	mibObject ricohEngScanStatShare;
+	mibObject ricohEngScanStatContactGlass;
+	mibObject ricohEngScanStatError;
+	mibObject ricohEngScanStatFunctionCurrent;
+	mibObject ricohEngScanStatUserCurrent;
+	mibObject ricohEngScanStatCompressBiLevel;
+	mibObject ricohEngScanStatCompressMultiLevel;
+	mibObject ricohEngScanStatSummary;
+	mibObject ricohEngMFPStatSummary;
+	mibObject ricohEngFAXStatSummary;
+	mibObject ricohEngCopyStatSummary;
+};
