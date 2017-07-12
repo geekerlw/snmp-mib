@@ -45,29 +45,10 @@ typedef struct ricohMibObject {
 /* System Description Group: Information necessary for Ricoh management tool to identify devices. */
 ricohMibObject ricohSysDescrInit();
 
-/* ricoh eng discription */
+/* Serial number(string) of the plotter engine. */
 ricohMibObject ricohEngDescrInit();
 
-/* Serial number(string) of the plotter engine. */
-/*
-struct ricohEngDescr {
-	oidObject ricohEngSerialNumber;
-};
-
 /* ricoh status objects */
-/*
-struct ricohEngStatus {
-	oidObject ricohEngScanStatShare;
-	oidObject ricohEngScanStatContactGlass;
-	oidObject ricohEngScanStatError;
-	oidObject ricohEngScanStatFunctionCurrent;
-	oidObject ricohEngScanStatUserCurrent;
-	oidObject ricohEngScanStatCompressBiLevel;
-	oidObject ricohEngScanStatCompressMultiLevel;
-	oidObject ricohEngScanStatSummary;
-	oidObject ricohEngMFPStatSummary;
-	oidObject ricohEngFAXStatSummary;
-	oidObject ricohEngCopyStatSummary;
-};
-*/
+ricohMibObject ricohEngStatusInit();
+
 #endif

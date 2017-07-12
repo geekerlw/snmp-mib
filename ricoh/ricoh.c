@@ -106,80 +106,105 @@ ricohMibObject ricohEngDescrInit()
 		.oidObject[0] = ricohEngSerialNumber,
 		.oidObjectNums = 1,
 	};
+
+	return mibs;
 }
 
 /* ricohEngStatus objects */
-/*
-oidObject ricohEngScanStatShare = {
-	.description = "Scanner status.",
-	.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.11.0",
-	.syntax = 3,
-	.access = 0,
-};
+ricohMibObject ricohEngStatusInit()
+{
+	const ricohOidObject ricohEngScanStatShare = {
+		.description = "Scanner status.",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.11.0",
+		.syntax = 3,
+		.access = 0,
+	};
 
-oidObject ricohEngScanStatContactGlass = {
-	.description = "Status of paper on contact glass.",
-	.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.12.0",
-	.syntax = 4,
-	.access = 0,
-};
+	const ricohOidObject ricohEngScanStatContactGlass = {
+		.description = "Status of paper on contact glass.",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.12.0",
+		.syntax = 4,
+		.access = 0,
+	};
 
 
-oidObject ricohEngScanStatError = {
-	.description = "Error status",
-	.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.13.0",
-	.syntax = 5,
-	.access = 0,
-};
+	const ricohOidObject ricohEngScanStatError = {
+		.description = "Error status",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.13.0",
+		.syntax = 5,
+		.access = 0,
+	};
 
-oidObject ricohEngScanStatFunctionCurrent = {
-	.description = "Feature in use.",
-	.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.14.0",
-	.syntax = 6,
-	.access = 0,
-};
+	const ricohOidObject ricohEngScanStatFunctionCurrent = {
+		.description = "Feature in use.",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.14.0",
+		.syntax = 6,
+		.access = 0,
+	};
 
-oidObject ricohEngScanStatUserCurrent = {
-	.description = "Remote: IP address of the connected host, Under distribution: Unused",
-	.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.15.0",
-	.syntax = 2,
-	.access = 0,
-};
+	const ricohOidObject ricohEngScanStatUserCurrent = {
+		.description = "Remote: IP address of the connected host, Under distribution: Unused",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.15.0",
+		.syntax = 2,
+		.access = 0,
+	};
 
-oidObject ricohEngScanStatCompressBiLevel = {
-	.description = "Bi-level compression.",
-	.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.16.0",
-	.syntax = 7,
-	.access = 0,
-};
-/*
-oidObject ricohEngScanStatCompressMultiLevel;
-ricohEngScanStatCompressMultiLevel.description = "Multi-level compression.";
-ricohEngScanStatCompressMultiLevel.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.17.0";
-ricohEngScanStatCompressMultiLevel.syntax = 7;
-ricohEngScanStatCompressBiLevel.access = 0;
+	const ricohOidObject ricohEngScanStatCompressBiLevel = {
+		.description = "Bi-level compression.",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.16.0",
+		.syntax = 7,
+		.access = 0,
+	};
 
-oidObject ricohEngScanStatSummary;
-ricohEngScanStatSummary.description = "Summary error status of scanning application.";
-ricohEngScanStatSummary.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.18.0";
-ricohEngScanStatSummary.syntax = 8;
-ricohEngScanStatSummary.access =0;
+	const ricohOidObject ricohEngScanStatCompressMultiLevel = {
+		.description = "Multi-level compression.",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.17.0",
+		.syntax = 7,
+		.access = 0,
+	};
 
-oidObject ricohEngMFPStatSummary;
-ricohEngMFPStatSummary.description = "Summary error status of MFP(Platform).";
-ricohEngMFPStatSummary.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.20.0";
-ricohEngMFPStatSummary.syntax = 9;
-ricohEngMFPStatSummary.access = 0;
+	const ricohOidObject ricohEngScanStatSummary = {
+		.description = "Summary error status of scanning application.",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.18.0",
+		.syntax = 8,
+		.access =0,
+	};
 
-oidObject ricohEngFAXStatSummary;
-ricohEngFAXStatSummary.description = "Summary error status of fax application.";
-ricohEngFAXStatSummary.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.21.0";
-ricohEngFAXStatSummary.syntax = 10;
-ricohEngFAXStatSummary.access = 0;
+	const ricohOidObject ricohEngMFPStatSummary = {
+		.description = "Summary error status of MFP(Platform).",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.20.0",
+		.syntax = 9,
+		.access = 0,
+	};
 
-oidObject ricohEngCopyStatSummary;
-ricohEngCopyStatSummary.description = "Summary error status.";
-ricohEngCopyStatSummary.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.22.0";
-ricohEngCopyStatSummary.syntax = 11;
-ricohEngCopyStatSummary.access = 0;
-*/
+	const ricohOidObject ricohEngFAXStatSummary = {
+		.description = "Summary error status of fax application.",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.21.0",
+		.syntax = 10,
+		.access = 0,
+	};
+
+	const ricohOidObject ricohEngCopyStatSummary = {
+		.description = "Summary error status.",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.2.22.0",
+		.syntax = 11,
+		.access = 0,
+	};
+
+	ricohMibObject mibs = {
+		.oidObject[0] = ricohEngScanStatShare,
+		.oidObject[1] = ricohEngScanStatContactGlass,
+		.oidObject[2] = ricohEngScanStatError,
+		.oidObject[3] = ricohEngScanStatFunctionCurrent,
+		.oidObject[4] = ricohEngScanStatUserCurrent,
+		.oidObject[5] = ricohEngScanStatCompressBiLevel,
+		.oidObject[6] = ricohEngScanStatCompressMultiLevel,
+		.oidObject[7] = ricohEngScanStatSummary,
+		.oidObject[8] = ricohEngMFPStatSummary,
+		.oidObject[9] = ricohEngFAXStatSummary,
+		.oidObject[10] = ricohEngCopyStatSummary,
+		.oidObjectNums = 11,
+	};
+		
+	return mibs;	
+}
