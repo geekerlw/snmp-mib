@@ -44,19 +44,9 @@ typedef struct ricohMibObject {
 
 /* System Description Group: Information necessary for Ricoh management tool to identify devices. */
 ricohMibObject ricohSysDescrInit();
-/*
-struct ricohSysDescr {
-	oidObject ricohSysName;
-	oidObject ricohSysVers;
-	oidObject ricohSysContact;
-	oidObject ricohSysLocation;
-	oidObject ricohSysProductID;
-	oidObject ricohSysOemID;
-	oidObject ricohSysLanguage;
-	oidObject ricohSysCountry;
-	oidObject ricohSysMIBVersion;
-	oidObject ricohSysDeviceID;
-};
+
+/* ricoh eng discription */
+ricohMibObject ricohEngDescrInit();
 
 /* Serial number(string) of the plotter engine. */
 /*

@@ -93,13 +93,20 @@ ricohMibObject ricohSysDescrInit()
 }
 
 /* Serial number (string) of the plotter engine. */
-/*
-oidObject ricohEngSerialNumber = {
-	.description = "Serial number (string) of the plotter engine.",
-	.oid = ".1.3.6.1.4.1.367.3.2.1.2.1",
-	.syntax = 2,
-	.access = 0,
-};
+ricohMibObject ricohEngDescrInit()
+{
+	const ricohOidObject ricohEngSerialNumber = {
+		.description = "Serial number (string) of the plotter engine.",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.2.1",
+		.syntax = 2,
+		.access = 0,
+	};
+
+	ricohMibObject mibs = {
+		.oidObject[0] = ricohEngSerialNumber,
+		.oidObjectNums = 1,
+	};
+}
 
 /* ricohEngStatus objects */
 /*
