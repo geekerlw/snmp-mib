@@ -2,7 +2,7 @@
 #include "ricoh-info.h"
 
 /* System Description Group: Information necessary for Ricoh management tool to identify devices. */
-const struct ricohSysDescr = {
+const struct ricohSysDescr {
 	mibObject ricohSysName;
 	mibObject ricohSysVers;
 	mibObject ricohSysContact;
@@ -16,12 +16,12 @@ const struct ricohSysDescr = {
 };
 
 /* Serial number(string) of the plotter engine. */
-const struct ricohEngDescr = {
+const struct ricohEngDescr {
 	mibObject ricohEngSerialNumber;
 };
 
 /* ricoh status objects */
-const struct ricohEngStatus = {
+const struct ricohEngStatus {
 	mibObject ricohEngScanStatShare;
 	mibObject ricohEngScanStatContactGlass;
 	mibObject ricohEngScanStatError;
