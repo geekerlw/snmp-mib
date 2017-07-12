@@ -78,6 +78,15 @@ ricohMibObject ricohSysDescrInit()
 	ricohMibObject mibs = {
 		.oidObject[0] = ricohSysName,
 		.oidObject[1] = ricohSysVers,
+		.oidObject[2] = ricohSysContact,
+		.oidObject[3] = ricohSysLocation,
+		.oidObject[4] = ricohSysProductID,
+		.oidObject[5] = ricohSysOemID,
+		.oidObject[6] = ricohSysLanguage,
+		.oidObject[7] = ricohSysCountry,
+		.oidObject[8] = ricohSysMIBVersion,
+		.oidObject[9] = ricohSysDeviceID,
+		.oidObjectNums = 10,
 	};
 
 	return mibs;
