@@ -33,4 +33,50 @@ ricohMibObject ricohEngDescrInit();
 /* ricoh status objects */
 ricohMibObject ricohEngStatusInit();
 
+ricohMibObject ricohEngEmulatorRPCSInit();
+
+ricohMibObject ricohEngEmulatorPCLInit();
+
+ricohMibObject ricohEngOptionInit();
+
+ricohMibObject ricohEngSearchInit();
+
+ricohMibObject ricohEngAdfInit();
+
+ricohMibObject ricohEngScanInit();
+
+ricohMibObject ricohEngEnergyInit();
+
+ricohMibObject ricohEngCounterInit();
+
+ricohMibObject ricohEngMFPGeneralInit();
+
+ricohMibObject ricohEngMFPInputInit();
+
+ricohMibObject ricohEngMFPOutputInit();
+
+ricohMibObject ricohEngMFPInserterInit();
+
+ricohMibObject ricohEngPrtGeneralInit();
+
+ricohMibObject ricohEngPrtInputInit();
+
+ricohMibObject ricohEngPrtOutputInit();
+
+ricohMibObject ricohEngPrtAlertInit();
+
+ricohMibObject ricohEngPrtMarkingInit();
+
+ricohMibObject ricohEngCpyGeneralInit();
+
+ricohMibObject ricohEngCpyAlertInit();
+
+ricohMibObject ricohEngTonerInit();
+
+ricohMibObject ricohQueJobPrtInit();
+
+ricohMibObject ricohLocalIfDevUsbInit();
+
+ricohMibObject ricohLocalIfDevBluetoothInit();
+
 #endif
