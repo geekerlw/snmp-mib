@@ -4,8 +4,7 @@
 
 mibObject ricoh;
 
-mibObject *
-ricohSysDescrInit()
+static void ricohSysDescrInit()
 {
 	oidObject ricohSysName = {
 		.description = "System name in English.",
@@ -22,12 +21,9 @@ ricohSysDescrInit()
 	ricoh.oidp[ricohSysNameIndex] = ricohSysName;
 	ricoh.oidp[ricohSysOemIDIndex] = ricohSysOemID;
 	ricoh.oidNums += 2;
-
-	return &ricoh;
 }
 
-mibObject * 
-ricohEngStatusInit()
+static void ricohEngStatusInit()
 {
 	const oidObject ricohEngScanStatShare = {
 		.description = "Scanner status.",
@@ -72,12 +68,9 @@ ricohEngStatusInit()
 	ricoh.oidp[ricohEngMFPStatSummaryIndex] = ricohEngMFPStatSummary;
 	ricoh.oidp[ricohEngCopyStatSummaryIndex] = ricohEngCopyStatSummary;
 	ricoh.oidNums += 6;
-
-	return &ricoh;
 }
 
-mibObject * 
-ricohEngScanInit()
+static void ricohEngScanInit()
 {
 	const oidObject ricohEngScanEndorserMessage = {
 		.description = "Endorser string.",
@@ -87,12 +80,9 @@ ricohEngScanInit()
 
 	ricoh.oidp[ricohEngScanEndorserMessageIndex] = ricohEngScanEndorserMessage;
 	ricoh.oidNums += 1;
-
-	return &ricoh;
 }
 
-mibObject * 
-ricohEngEnergyInit()
+static void ricohEngEnergyInit()
 {
 	const oidObject ricohEngEnergyStatType = {
 		.description = "Identifier (number) for power consumption status",
@@ -109,12 +99,9 @@ ricohEngEnergyInit()
 	ricoh.oidp[ricohEngEnergyStatTypeIndex] = ricohEngEnergyStatType;
 	ricoh.oidp[ricohEngEnergyStatCurrentIndex] = ricohEngEnergyStatCurrent;
 	ricoh.oidNums += 2;
-
-	return &ricoh;
 }
 
-mibObject *
-ricohEngCounterInit()
+static void ricohEngCounterInit()
 {
 	const oidObject ricohEngCounterTotal = {
 		.description = "Total of all counters for the devices.",
@@ -148,12 +135,9 @@ ricohEngCounterInit()
 	ricoh.oidp[ricohEngCounterNameIndex] = ricohEngCounterName;
 	ricoh.oidp[ricohEngCounterValueIndex] = ricohEngCounterValue;
 	ricoh.oidNums += 5;
-
-	return &ricoh;
 }
 
-mibObject *
-ricohEngMFPInputInit()
+static void ricohEngMFPInputInit()
 {
 	const oidObject ricohEngMFPInputCurrentLevel = {
 		.description = "Current supply of media in input subunit, in units specified in prtInputCapacityUnit.",
@@ -175,12 +159,9 @@ ricohEngMFPInputInit()
 	ricoh.oidp[ricohEngMFPInputStatusIndex] = ricohEngMFPInputStatus;
 	ricoh.oidp[ricohEngMFPInputNameIndex] = ricohEngMFPInputName;
 	ricoh.oidNums += 3;
-
-	return &ricoh;
 }
 
-mibObject *
-ricohEngMFPOutputInit()
+static void ricohEngMFPOutputInit()
 {
 	const oidObject ricohEngMFPOutputStatus = {
 		.description = "Current status of output subunit. Essentially the same as prtOutputStatus.",
@@ -190,12 +171,9 @@ ricohEngMFPOutputInit()
 
 	ricoh.oidp[ricohEngMFPOutputStatusIndex] = ricohEngMFPOutputStatus;
 	ricoh.oidNums += 1;
-
-	return &ricoh;
 }
 
-mibObject *
-ricohEngPrtGeneralInit()
+static void ricohEngPrtGeneralInit()
 {
 	const oidObject ricohEngPrtConsoleDisable = {
 		.description = "Indicates whether the console (operation panel) is enabled or disabled.",
@@ -205,12 +183,9 @@ ricohEngPrtGeneralInit()
 
 	ricoh.oidp[ricohEngPrtConsoleDisableIndex] = ricohEngPrtConsoleDisable;
 	ricoh.oidNums += 1;
-
-	return &ricoh;
 }
 
-mibObject * 
-ricohEngCpyGeneralInit()
+static void ricohEngCpyGeneralInit()
 {
 	const oidObject ricohEngCpyConsoleDisable = {
 		.description = "Indicates whether operation from the console (operation panel) is enabled or not.",
@@ -220,12 +195,9 @@ ricohEngCpyGeneralInit()
 
 	ricoh.oidp[ricohEngCpyConsoleDisableIndex] = ricohEngCpyConsoleDisable;
 	ricoh.oidNums += 1;
-
-	return &ricoh;
 }
 
-mibObject * 
-ricohEngTonerInit()
+static void ricohEngTonerInit()
 {
 	const oidObject ricohEngTonerName = {
 		.description = "Unlocalized name of toner.",
@@ -241,12 +213,9 @@ ricohEngTonerInit()
 	ricoh.oidp[ricohEngTonerNameIndex] = ricohEngTonerName;
 	ricoh.oidp[ricohEngTonerLevelIndex] = ricohEngTonerLevel;
 	ricoh.oidNums += 2;
-
-	return &ricoh;
 }
 
-mibObject *
-ricohQueJobPrtInit()
+static void ricohQueJobPrtInit()
 {
 	const oidObject ricohQueJobPrtName = {
 		.description = "Name (string) of job. Document name.",
@@ -298,12 +267,9 @@ ricohQueJobPrtInit()
 	ricoh.oidp[ricohQueJobPrtControlCapabilityIndex] = ricohQueJobPrtControlCapability;
 	ricoh.oidp[ricohQueJobPrtControlOperationIndex] = ricohQueJobPrtControlOperation;
 	ricoh.oidNums += 8;
-
-	return &ricoh;
 }
 
-mibObject *
-ricohLocalIfDevUsbInit()
+static void ricohLocalIfDevUsbInit()
 {
 	const oidObject ricohLocalIfDevUsbAdminStatus = {
 		.description = "use device admin status",
@@ -313,6 +279,26 @@ ricohLocalIfDevUsbInit()
 
 	ricoh.oidp[ricohLocalIfDevUsbAdminStatusIndex] = ricohLocalIfDevUsbAdminStatus;
 	ricoh.oidNums += 1;
+}
 
+static void ricohMibObjectInit()
+{	
+	ricohSysDescrInit();
+	ricohEngStatusInit();
+	ricohEngScanInit();
+	ricohEngEnergyInit();
+	ricohEngCounterInit();
+	ricohEngMFPInputInit();
+	ricohEngMFPOutputInit();
+	ricohEngPrtGeneralInit();
+	ricohEngCpyGeneralInit();
+	ricohEngTonerInit();
+	ricohQueJobPrtInit();
+	ricohLocalIfDevUsbInit();
+}
+mibObject* ricohMibObjectget()
+{
+	ricohMibObjectInit();
+	
 	return &ricoh;
 }

@@ -2,9 +2,28 @@
 #define _RICOH_H
 
 #define MAX_OID_NUMS 	50
-#define NINDEX 	1
-#define NOID	2
 
+/* enum the access of a oid object */
+const enum accessNum {
+	readOnly,								// 0
+	writeOnly,								// 1
+	readAndWrite,							// 2
+	noneAccessable							// 3
+};
+
+/* each oid has such properties */
+typedef struct oidObject {
+	char *description;
+	char *oid;
+	int access;
+	int status;
+}oidObject;
+typedef struct mibObject {
+	oidObject oidp[MAX_OID_NUMS];
+	int oidNums;
+}mibObject;
+
+/* oid objects search index */
 const enum oidObjectIndex {	
 	ricohSysNameIndex,							// 0
 	ricohSysOemIDIndex,							// 1
@@ -41,49 +60,6 @@ const enum oidObjectIndex {
 	ricohLocalIfDevUsbAdminStatusIndex 			// 32
 };
 
-/* enum the access of a oid object */
-const enum accessNum {
-	readOnly,								// 0
-	writeOnly,								// 1
-	readAndWrite,							// 2
-	noneAccessable							// 3
-};
-
-/* each oid has such properties */
-typedef struct oidObject {
-	char *description;
-	char *oid;
-	int access;
-	int status;
-}oidObject;
-typedef struct mibObject {
-	oidObject oidp[MAX_OID_NUMS];
-	int oidNums;
-}mibObject;
-
-/* System Description Group: Information necessary for Ricoh management tool to identify devices. */
-mibObject* ricohSysDescrInit();
-
-mibObject* ricohEngStatusInit();
-
-mibObject* ricohEngScanInit();
-
-mibObject* ricohEngEnergyInit();
-
-mibObject* ricohEngCounterInit();
-
-mibObject* ricohEngMFPInputInit();
-
-mibObject* ricohEngMFPOutputInit();
-
-mibObject* ricohEngPrtGeneralInit();
-
-mibObject* ricohEngCpyGeneralInit();
-
-mibObject* ricohEngTonerInit();
-
-mibObject* ricohQueJobPrtInit();
-
-mibObject* ricohLocalIfDevUsbInit();
+mibObject* ricohMibObjectget();
 
 #endif
