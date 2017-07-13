@@ -69,7 +69,7 @@ main()
 	
 	mibObject *ricohmib;
 	ricohmib = (mibObject *)malloc(sizeof(mibObject));
-	ricohmib = ricohSysDescrInit();
+	ricohmib = ricohMibObjectget();
 	
 	/* initial the snmp library */
 	init_snmp("snmpapp");
