@@ -66,7 +66,10 @@ main()
     int             status;
     int             failures = 0;
     int             exitval = 0;
-	ricohMibObject mibs = ricohSysDescrInit();
+	
+	mibObject *ricohmib;
+	ricohmib = (mibObject *)malloc(sizeof(mibObject));
+	ricohmib = ricohSysDescrInit();
 	
 	/* initial the snmp library */
 	init_snmp("snmpapp");
@@ -105,7 +108,9 @@ main()
      * get the object names 
      */
     /* test for ricohSysDescr.ricohSysName.oid */
-	char *oid = mibs.oidObject[0].oid;
+
+	char *oid = ricohmib->oidp[ricohSysNameIndex].oid;
+	//printf("get the ricoh oid: %c \n", *oid);
 	if (!snmp_parse_oid(oid, name, &name_length)) {
 		snmp_perror(oid);
 		failures++;
