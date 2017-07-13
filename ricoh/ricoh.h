@@ -1,8 +1,45 @@
-#ifndef RICOH_H
-#define RICOH_H
-//#include "ricoh-types.h"
+#ifndef _RICOH_H
+#define _RICOH_H
 
-#define MAX_OID_NUMS 20
+#define MAX_OID_NUMS 	50
+#define NINDEX 	1
+#define NOID	2
+
+const enum oidObjectIndex {	
+	ricohSysNameIndex,							// 0
+	ricohSysOemIDIndex,							// 1
+	ricohEngScanStatShareIndex,					// 2
+	ricohEngScanStatContactGlassIndex,			// 3
+	ricohEngScanStatErrorIndex,					// 4
+	ricohEngScanStatSummaryIndex,				// 5
+	ricohEngMFPStatSummaryIndex, 				// 6
+	ricohEngCopyStatSummaryIndex, 				// 7
+	ricohEngScanEndorserMessageIndex, 			// 8
+	ricohEngEnergyStatTypeIndex,				// 9
+	ricohEngEnergyStatCurrentIndex,				// 10
+	ricohEngCounterTotalIndex,					// 11
+	ricohEngCounterPrinterIndex, 				// 12
+	ricohEngCounterCopierIndex, 				// 13
+	ricohEngCounterNameIndex, 					// 14
+	ricohEngCounterValueIndex, 					// 15
+	ricohEngMFPInputCurrentLevelIndex,			// 16
+	ricohEngMFPInputStatusIndex,				// 17
+	ricohEngMFPInputNameIndex,					// 18
+	ricohEngMFPOutputStatusIndex,				// 19
+	ricohEngPrtConsoleDisableIndex, 			// 20
+	ricohEngCpyConsoleDisableIndex, 			// 21
+	ricohEngTonerNameIndex,						// 22
+	ricohEngTonerLevelIndex, 					// 23
+	ricohQueJobPrtNameIndex,					// 24
+	ricohQueJobPrtPageIndex, 					// 25
+	ricohQueJobPrtTimeIndex, 					// 26
+	ricohQueJobPrtStatusIndex, 					// 27
+	ricohQueJobPrtNewestIndexIndex,				// 28
+	ricohQueJobPrtTableSizeIndex, 				// 29
+	ricohQueJobPrtControlCapabilityIndex, 		// 30
+	ricohQueJobPrtControlOperationIndex, 		// 31
+	ricohLocalIfDevUsbAdminStatusIndex 			// 32
+};
 
 /* enum the access of a oid object */
 const enum accessNum {
@@ -20,34 +57,33 @@ typedef struct oidObject {
 	int status;
 }oidObject;
 typedef struct mibObject {
-	oidObject *oidp[MAX_OID_NUMS];
+	oidObject oidp[MAX_OID_NUMS];
 	int oidNums;
 }mibObject;
 
 /* System Description Group: Information necessary for Ricoh management tool to identify devices. */
-ricohMibObject ricohSysDescrInit();
+mibObject* ricohSysDescrInit();
 
-/* ricoh status objects */
-ricohMibObject ricohEngStatusInit();
+mibObject* ricohEngStatusInit();
 
-ricohMibObject ricohEngScanInit();
+mibObject* ricohEngScanInit();
 
-ricohMibObject ricohEngEnergyInit();
+mibObject* ricohEngEnergyInit();
 
-ricohMibObject ricohEngCounterInit();
+mibObject* ricohEngCounterInit();
 
-ricohMibObject ricohEngMFPInputInit();
+mibObject* ricohEngMFPInputInit();
 
-ricohMibObject ricohEngMFPOutputInit();
+mibObject* ricohEngMFPOutputInit();
 
-ricohMibObject ricohEngPrtGeneralInit();
+mibObject* ricohEngPrtGeneralInit();
 
-ricohMibObject ricohEngCpyGeneralInit();
+mibObject* ricohEngCpyGeneralInit();
 
-ricohMibObject ricohEngTonerInit();
+mibObject* ricohEngTonerInit();
 
-ricohMibObject ricohQueJobPrtInit();
+mibObject* ricohQueJobPrtInit();
 
-ricohMibObject ricohLocalIfDevUsbInit();
+mibObject* ricohLocalIfDevUsbInit();
 
 #endif

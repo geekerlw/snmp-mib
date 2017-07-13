@@ -2,30 +2,32 @@
 #include <string.h>
 #include "ricoh.h"
 
-/* System Description Group: Information necessary for Ricoh management tool to identify devices. */
-static void ricohSysDescrInit(mibObject *mibs)
+mibObject ricoh;
+
+mibObject *
+ricohSysDescrInit()
 {
-	const oidObject ricohSysName = {
+	oidObject ricohSysName = {
 		.description = "System name in English.",
 		.oid = ".1.3.6.1.4.1.367.3.2.1.1.1.1.0",
 		.access = 0,
 	};
-
-	const oidObject ricohSysOemID = {
+	
+	oidObject ricohSysOemID = {
 		.description = "Vendor name to identify OEM.",
 		.oid = ".1.3.6.1.4.1.367.3.2.1.1.1.7.0",
 		.access = 0,
 	};
 
-	mibs = {
-		.oidp[0] = &ricohSysName,
-		.oidp[1] = &ricohSysOemID,
-		.oidNums = 2,
-	};
+	ricoh.oidp[ricohSysNameIndex] = ricohSysName;
+	ricoh.oidp[ricohSysOemIDIndex] = ricohSysOemID;
+	ricoh.oidNums += 2;
+
+	return &ricoh;
 }
 
-/* ricohEngStatus objects */
-static void ricohEngStatusInit(mibObject *mibs)
+mibObject * 
+ricohEngStatusInit()
 {
 	const oidObject ricohEngScanStatShare = {
 		.description = "Scanner status.",
@@ -63,28 +65,34 @@ static void ricohEngStatusInit(mibObject *mibs)
 		.access = 0,
 	};
 
-	mibs = {
-		.oidp[0] = &ricohEngScanStatShare,
-		.oidp[1] = &ricohEngScanStatContactGlass,
-		.oidp[2] = &ricohEngScanStatError,
-		.oidp[3] = &ricohEngScanStatSummary,
-		.oidp[4] = &ricohEngMFPStatSummary,
-		.oidp[5] = &ricohEngCopyStatSummary,
-		.oidNums = 6,
-	};	
+	ricoh.oidp[ricohEngScanStatShareIndex] = ricohEngScanStatShare;
+	ricoh.oidp[ricohEngScanStatContactGlassIndex] = ricohEngScanStatContactGlass;
+	ricoh.oidp[ricohEngScanStatErrorIndex] = ricohEngScanStatError;
+	ricoh.oidp[ricohEngScanStatSummaryIndex] = ricohEngScanStatSummary;
+	ricoh.oidp[ricohEngMFPStatSummaryIndex] = ricohEngMFPStatSummary;
+	ricoh.oidp[ricohEngCopyStatSummaryIndex] = ricohEngCopyStatSummary;
+	ricoh.oidNums += 6;
+
+	return &ricoh;
 }
 
-mibObject ricohEngScanInit()
+mibObject * 
+ricohEngScanInit()
 {
 	const oidObject ricohEngScanEndorserMessage = {
 		.description = "Endorser string.",
 		.oid = ".1.3.6.1.4.1.367.3.2.1.2.16.28.1.8.1",
 		.access = 0,
 	};
-	
+
+	ricoh.oidp[ricohEngScanEndorserMessageIndex] = ricohEngScanEndorserMessage;
+	ricoh.oidNums += 1;
+
+	return &ricoh;
 }
 
-mibObject ricohEngEnergyInit()
+mibObject * 
+ricohEngEnergyInit()
 {
 	const oidObject ricohEngEnergyStatType = {
 		.description = "Identifier (number) for power consumption status",
@@ -97,10 +105,16 @@ mibObject ricohEngEnergyInit()
 		.oid = ".1.3.6.1.4.1.367.3.2.1.2.17.2.0",
 		.access = 2,
 	};
-	
+
+	ricoh.oidp[ricohEngEnergyStatTypeIndex] = ricohEngEnergyStatType;
+	ricoh.oidp[ricohEngEnergyStatCurrentIndex] = ricohEngEnergyStatCurrent;
+	ricoh.oidNums += 2;
+
+	return &ricoh;
 }
 
-mibObject ricohEngCounterInit()
+mibObject *
+ricohEngCounterInit()
 {
 	const oidObject ricohEngCounterTotal = {
 		.description = "Total of all counters for the devices.",
@@ -127,9 +141,19 @@ mibObject ricohEngCounterInit()
 		.oid = ".1.3.6.1.4.1.367.3.2.1.2.19.5.1.9",
 		.access = 0,
 	};
+
+	ricoh.oidp[ricohEngCounterTotalIndex] = ricohEngCounterTotal;
+	ricoh.oidp[ricohEngCounterPrinterIndex] = ricohEngCounterPrinter;
+	ricoh.oidp[ricohEngCounterCopierIndex] = ricohEngCounterCopier;
+	ricoh.oidp[ricohEngCounterNameIndex] = ricohEngCounterName;
+	ricoh.oidp[ricohEngCounterValueIndex] = ricohEngCounterValue;
+	ricoh.oidNums += 5;
+
+	return &ricoh;
 }
 
-mibObject ricohEngMFPInputInit()
+mibObject *
+ricohEngMFPInputInit()
 {
 	const oidObject ricohEngMFPInputCurrentLevel = {
 		.description = "Current supply of media in input subunit, in units specified in prtInputCapacityUnit.",
@@ -146,36 +170,62 @@ mibObject ricohEngMFPInputInit()
 		.oid = ".1.3.6.1.4.1.367.3.2.1.2.20.2.2.1.13.2",
 		.access = 0,
 	};
+
+	ricoh.oidp[ricohEngMFPInputCurrentLevelIndex] = ricohEngMFPInputCurrentLevel;
+	ricoh.oidp[ricohEngMFPInputStatusIndex] = ricohEngMFPInputStatus;
+	ricoh.oidp[ricohEngMFPInputNameIndex] = ricohEngMFPInputName;
+	ricoh.oidNums += 3;
+
+	return &ricoh;
 }
 
-mibObject ricohEngMFPOutputInit()
+mibObject *
+ricohEngMFPOutputInit()
 {
 	const oidObject ricohEngMFPOutputStatus = {
 		.description = "Current status of output subunit. Essentially the same as prtOutputStatus.",
 		.oid = ".1.3.6.1.4.1.367.3.2.1.2.20.3.2.1.6.2.1",
 		.access = 0,
 	};
+
+	ricoh.oidp[ricohEngMFPOutputStatusIndex] = ricohEngMFPOutputStatus;
+	ricoh.oidNums += 1;
+
+	return &ricoh;
 }
 
-mibObject ricohEngPrtGeneralInit()
+mibObject *
+ricohEngPrtGeneralInit()
 {
 	const oidObject ricohEngPrtConsoleDisable = {
-		.descpription = "Indicates whether the console (operation panel) is enabled or disabled.",
+		.description = "Indicates whether the console (operation panel) is enabled or disabled.",
 		.oid = ".1.3.6.1.4.1.367.3.2.1.2.21.1.2.1.2.1",
 		.access = 0,
 	};
+
+	ricoh.oidp[ricohEngPrtConsoleDisableIndex] = ricohEngPrtConsoleDisable;
+	ricoh.oidNums += 1;
+
+	return &ricoh;
 }
 
-mibObject ricohEngCpyGeneralInit()
+mibObject * 
+ricohEngCpyGeneralInit()
 {
 	const oidObject ricohEngCpyConsoleDisable = {
 		.description = "Indicates whether operation from the console (operation panel) is enabled or not.",
 		.oid = ".1.3.6.1.4.1.367.3.2.1.2.23.1.2.1.2.3",
 		.access = 0,
 	};
+
+	ricoh.oidp[ricohEngCpyConsoleDisableIndex] = ricohEngCpyConsoleDisable;
+	ricoh.oidNums += 1;
+
+	return &ricoh;
 }
 
-mibObject ricohEngTonerInit()
+mibObject * 
+ricohEngTonerInit()
 {
 	const oidObject ricohEngTonerName = {
 		.description = "Unlocalized name of toner.",
@@ -187,9 +237,16 @@ mibObject ricohEngTonerInit()
 		.oid = ".1.3.6.1.4.1.367.3.2.1.2.24.1.1.5",
 		.access = 0,
 	};
+
+	ricoh.oidp[ricohEngTonerNameIndex] = ricohEngTonerName;
+	ricoh.oidp[ricohEngTonerLevelIndex] = ricohEngTonerLevel;
+	ricoh.oidNums += 2;
+
+	return &ricoh;
 }
 
-mibObject ricohQueJobPrtInit()
+mibObject *
+ricohQueJobPrtInit()
 {
 	const oidObject ricohQueJobPrtName = {
 		.description = "Name (string) of job. Document name.",
@@ -231,13 +288,31 @@ mibObject ricohQueJobPrtInit()
 		.oid = ".1.3.6.1.4.1.367.3.2.1.3.2.1.5",
 		.access = 2,
 	};
+
+	ricoh.oidp[ricohQueJobPrtNameIndex] = ricohQueJobPrtName;
+	ricoh.oidp[ricohQueJobPrtPageIndex] = ricohQueJobPrtPage;
+	ricoh.oidp[ricohQueJobPrtTimeIndex] = ricohQueJobPrtTime;
+	ricoh.oidp[ricohQueJobPrtStatusIndex] = ricohQueJobPrtStatus;
+	ricoh.oidp[ricohQueJobPrtNewestIndexIndex] = ricohQueJobPrtNewestIndex;
+	ricoh.oidp[ricohQueJobPrtTableSizeIndex] = ricohQueJobPrtTableSize;
+	ricoh.oidp[ricohQueJobPrtControlCapabilityIndex] = ricohQueJobPrtControlCapability;
+	ricoh.oidp[ricohQueJobPrtControlOperationIndex] = ricohQueJobPrtControlOperation;
+	ricoh.oidNums += 8;
+
+	return &ricoh;
 }
 
-mibObject ricohLocalIfDevUsbInit()
+mibObject *
+ricohLocalIfDevUsbInit()
 {
 	const oidObject ricohLocalIfDevUsbAdminStatus = {
 		.description = "use device admin status",
 		.oid = ".1.3.6.1.4.1.367.3.2.1.9.1.2.1.0",
 		.access = 2,
 	};
+
+	ricoh.oidp[ricohLocalIfDevUsbAdminStatusIndex] = ricohLocalIfDevUsbAdminStatus;
+	ricoh.oidNums += 1;
+
+	return &ricoh;
 }
