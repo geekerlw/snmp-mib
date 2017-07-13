@@ -13,16 +13,16 @@ const enum accessNum {
 };
 
 /* each oid has such properties */
-typedef struct ricohOidObject {
+typedef struct oidObject {
 	char *description;
 	char *oid;
 	int access;
 	int status;
-}ricohOidObject;
-typedef struct ricohMibObject {
-	ricohOidObject oidObject[MAX_OID_NUMS];
-	int oidObjectNums;
-}ricohMibObject;
+}oidObject;
+typedef struct mibObject {
+	oidObject *oidp[MAX_OID_NUMS];
+	int oidNums;
+}mibObject;
 
 /* System Description Group: Information necessary for Ricoh management tool to identify devices. */
 ricohMibObject ricohSysDescrInit();
