@@ -46,7 +46,7 @@
 
 #include <net-snmp/net-snmp-includes.h>
 
-#include "ricoh/ricoh.h"
+#include "mib_api.h"
 
 #define NETSNMP_DS_APP_DONT_FIX_PDUS 0
 
@@ -108,9 +108,8 @@ main()
      * get the object names 
      */
     /* test for ricohSysDescr.ricohSysName.oid */
+	char *oid = ricohmib->oidp[PRINTER_PRODUCT_NAME].oid;
 
-	char *oid = ricohmib->oidp[ricohSysNameIndex].oid;
-	//printf("get the ricoh oid: %c \n", *oid);
 	if (!snmp_parse_oid(oid, name, &name_length)) {
 		snmp_perror(oid);
 		failures++;
