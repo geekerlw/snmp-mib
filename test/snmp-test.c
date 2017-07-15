@@ -46,7 +46,8 @@
 
 #include <net-snmp/net-snmp-includes.h>
 
-#include "mib_api.h"
+/* just include the top header */
+#include "../include/mib_api.h"
 
 #define NETSNMP_DS_APP_DONT_FIX_PDUS 0
 

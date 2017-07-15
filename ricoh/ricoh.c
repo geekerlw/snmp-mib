@@ -1,5 +1,5 @@
-#include "ricoh.h"
-#include "../mib_api.h"
+#include "../include/mib_types.h"
+#include "../include/mib_api.h"
 
 mibObject ricoh;
 
