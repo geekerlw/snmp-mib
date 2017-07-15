@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <string.h>
 #include "ricoh.h"
+#include "../mib_api.h"
 
 mibObject ricoh;
 
@@ -18,8 +17,8 @@ static void ricohSysDescrInit()
 		.access = 0,
 	};
 
-	ricoh.oidp[ricohSysNameIndex] = ricohSysName;
-	ricoh.oidp[ricohSysOemIDIndex] = ricohSysOemID;
+	ricoh.oidp[PRINTER_PRODUCT_NAME] = ricohSysName;
+	ricoh.oidp[PRINTER_VENDOR_NAME] = ricohSysOemID;
 	ricoh.oidNums += 2;
 }
 
@@ -61,44 +60,25 @@ static void ricohEngStatusInit()
 		.access = 0,
 	};
 
-	ricoh.oidp[ricohEngScanStatShareIndex] = ricohEngScanStatShare;
-	ricoh.oidp[ricohEngScanStatContactGlassIndex] = ricohEngScanStatContactGlass;
-	ricoh.oidp[ricohEngScanStatErrorIndex] = ricohEngScanStatError;
-	ricoh.oidp[ricohEngScanStatSummaryIndex] = ricohEngScanStatSummary;
-	ricoh.oidp[ricohEngMFPStatSummaryIndex] = ricohEngMFPStatSummary;
-	ricoh.oidp[ricohEngCopyStatSummaryIndex] = ricohEngCopyStatSummary;
+	ricoh.oidp[SCAN_SHARE_STATUS] = ricohEngScanStatShare;
+	ricoh.oidp[SCAN_CONTACT_STATUS] = ricohEngScanStatContactGlass;
+	ricoh.oidp[SCAN_ERROR_STATUS] = ricohEngScanStatError;
+	ricoh.oidp[SCAN_STATUS_SUMMARY] = ricohEngScanStatSummary;
+	ricoh.oidp[MFP_STATUS_SUMMARY] = ricohEngMFPStatSummary;
+	ricoh.oidp[COPY_STATUS_SUMMARY] = ricohEngCopyStatSummary;
 	ricoh.oidNums += 6;
-}
-
-static void ricohEngScanInit()
-{
-	const oidObject ricohEngScanEndorserMessage = {
-		.description = "Endorser string.",
-		.oid = ".1.3.6.1.4.1.367.3.2.1.2.16.28.1.8.1",
-		.access = 0,
-	};
-
-	ricoh.oidp[ricohEngScanEndorserMessageIndex] = ricohEngScanEndorserMessage;
-	ricoh.oidNums += 1;
 }
 
 static void ricohEngEnergyInit()
 {
-	const oidObject ricohEngEnergyStatType = {
-		.description = "Identifier (number) for power consumption status",
-		.oid = ".1.3.6.1.4.1.367.3.2.1.2.17.1.1.2",
-		.access = 0,
-	};
-
 	const oidObject ricohEngEnergyStatCurrent = {
 		.description = "Index of ricohEngEngeryStat entry regarding the current power consumption state.",
 		.oid = ".1.3.6.1.4.1.367.3.2.1.2.17.2.0",
 		.access = 2,
 	};
 
-	ricoh.oidp[ricohEngEnergyStatTypeIndex] = ricohEngEnergyStatType;
-	ricoh.oidp[ricohEngEnergyStatCurrentIndex] = ricohEngEnergyStatCurrent;
-	ricoh.oidNums += 2;
+	ricoh.oidp[MFP_ENERGY_STATUS] = ricohEngEnergyStatCurrent;
+	ricoh.oidNums += 1;
 }
 
 static void ricohEngCounterInit()
@@ -129,11 +109,11 @@ static void ricohEngCounterInit()
 		.access = 0,
 	};
 
-	ricoh.oidp[ricohEngCounterTotalIndex] = ricohEngCounterTotal;
-	ricoh.oidp[ricohEngCounterPrinterIndex] = ricohEngCounterPrinter;
-	ricoh.oidp[ricohEngCounterCopierIndex] = ricohEngCounterCopier;
-	ricoh.oidp[ricohEngCounterNameIndex] = ricohEngCounterName;
-	ricoh.oidp[ricohEngCounterValueIndex] = ricohEngCounterValue;
+	ricoh.oidp[COUNTER_TOTAL] = ricohEngCounterTotal;
+	ricoh.oidp[COUNTER_PRINTER] = ricohEngCounterPrinter;
+	ricoh.oidp[COUNTER_COPIER] = ricohEngCounterCopier;
+	ricoh.oidp[COUNTER_NAME] = ricohEngCounterName;
+	ricoh.oidp[COUNTER_LEVEL] = ricohEngCounterValue;
 	ricoh.oidNums += 5;
 }
 
@@ -155,9 +135,9 @@ static void ricohEngMFPInputInit()
 		.access = 0,
 	};
 
-	ricoh.oidp[ricohEngMFPInputCurrentLevelIndex] = ricohEngMFPInputCurrentLevel;
-	ricoh.oidp[ricohEngMFPInputStatusIndex] = ricohEngMFPInputStatus;
-	ricoh.oidp[ricohEngMFPInputNameIndex] = ricohEngMFPInputName;
+	ricoh.oidp[MFP_INPUT_LEVEL] = ricohEngMFPInputCurrentLevel;
+	ricoh.oidp[MFP_INPUT_STATUS] = ricohEngMFPInputStatus;
+	ricoh.oidp[MFP_INPUT_NAME] = ricohEngMFPInputName;
 	ricoh.oidNums += 3;
 }
 
@@ -169,7 +149,7 @@ static void ricohEngMFPOutputInit()
 		.access = 0,
 	};
 
-	ricoh.oidp[ricohEngMFPOutputStatusIndex] = ricohEngMFPOutputStatus;
+	ricoh.oidp[MFP_OUTPUT_STATUS] = ricohEngMFPOutputStatus;
 	ricoh.oidNums += 1;
 }
 
@@ -181,7 +161,7 @@ static void ricohEngPrtGeneralInit()
 		.access = 0,
 	};
 
-	ricoh.oidp[ricohEngPrtConsoleDisableIndex] = ricohEngPrtConsoleDisable;
+	ricoh.oidp[PRINT_CONSOLE] = ricohEngPrtConsoleDisable;
 	ricoh.oidNums += 1;
 }
 
@@ -193,7 +173,7 @@ static void ricohEngCpyGeneralInit()
 		.access = 0,
 	};
 
-	ricoh.oidp[ricohEngCpyConsoleDisableIndex] = ricohEngCpyConsoleDisable;
+	ricoh.oidp[COPY_CONSOLE] = ricohEngCpyConsoleDisable;
 	ricoh.oidNums += 1;
 }
 
@@ -210,8 +190,8 @@ static void ricohEngTonerInit()
 		.access = 0,
 	};
 
-	ricoh.oidp[ricohEngTonerNameIndex] = ricohEngTonerName;
-	ricoh.oidp[ricohEngTonerLevelIndex] = ricohEngTonerLevel;
+	ricoh.oidp[TONER_NAME] = ricohEngTonerName;
+	ricoh.oidp[TONER_LEVEL] = ricohEngTonerLevel;
 	ricoh.oidNums += 2;
 }
 
@@ -242,31 +222,20 @@ static void ricohQueJobPrtInit()
 		.oid = ".1.3.6.1.4.1.367.3.2.1.3.2.1.2",
 		.access = 0,
 	};
-	const oidObject ricohQueJobPrtTableSize = {
-		.description = "Maximum number of entries in ricohQueJobPrinterEntry.",
-		.oid = ".1.3.6.1.4.1.367.3.2.1.3.2.1.3",
-		.access = 0,
-	};
-	const oidObject ricohQueJobPrtControlCapability = {
-		.description = "The information on the capability which cancels a printing job from remote is expressed with bit assignment",
-		.oid = ".1.3.6.1.4.1.367.3.2.1.3.2.1.4",
-		.access = 0,
-	};
+
 	const oidObject ricohQueJobPrtControlOperation = {
 		.description = "From remote operation, execution of a job cancellation state and job cancellation.",
 		.oid = ".1.3.6.1.4.1.367.3.2.1.3.2.1.5",
 		.access = 2,
 	};
 
-	ricoh.oidp[ricohQueJobPrtNameIndex] = ricohQueJobPrtName;
-	ricoh.oidp[ricohQueJobPrtPageIndex] = ricohQueJobPrtPage;
-	ricoh.oidp[ricohQueJobPrtTimeIndex] = ricohQueJobPrtTime;
-	ricoh.oidp[ricohQueJobPrtStatusIndex] = ricohQueJobPrtStatus;
-	ricoh.oidp[ricohQueJobPrtNewestIndexIndex] = ricohQueJobPrtNewestIndex;
-	ricoh.oidp[ricohQueJobPrtTableSizeIndex] = ricohQueJobPrtTableSize;
-	ricoh.oidp[ricohQueJobPrtControlCapabilityIndex] = ricohQueJobPrtControlCapability;
-	ricoh.oidp[ricohQueJobPrtControlOperationIndex] = ricohQueJobPrtControlOperation;
-	ricoh.oidNums += 8;
+	ricoh.oidp[JOB_PRINT_NAME] = ricohQueJobPrtName;
+	ricoh.oidp[JOB_PRINT_PAGE] = ricohQueJobPrtPage;
+	ricoh.oidp[JOB_PRINT_TIME] = ricohQueJobPrtTime;
+	ricoh.oidp[JOB_PRINT_STATUS] = ricohQueJobPrtStatus;
+	ricoh.oidp[JOB_PRINT_INDEX] = ricohQueJobPrtNewestIndex;
+	ricoh.oidp[PRINTER_JOB_CONTROL] = ricohQueJobPrtControlOperation;
+	ricoh.oidNums += 6;
 }
 
 static void ricohLocalIfDevUsbInit()
@@ -277,15 +246,14 @@ static void ricohLocalIfDevUsbInit()
 		.access = 2,
 	};
 
-	ricoh.oidp[ricohLocalIfDevUsbAdminStatusIndex] = ricohLocalIfDevUsbAdminStatus;
+	ricoh.oidp[PRINTER_USB] = ricohLocalIfDevUsbAdminStatus;
 	ricoh.oidNums += 1;
 }
 
-static void ricohMibObjectInit()
+static void ricohMibObjectInitAll()
 {	
 	ricohSysDescrInit();
 	ricohEngStatusInit();
-	ricohEngScanInit();
 	ricohEngEnergyInit();
 	ricohEngCounterInit();
 	ricohEngMFPInputInit();
@@ -298,7 +266,7 @@ static void ricohMibObjectInit()
 }
 mibObject* ricohMibObjectget()
 {
-	ricohMibObjectInit();
+	ricohMibObjectInitAll();
 	
 	return &ricoh;
 }
