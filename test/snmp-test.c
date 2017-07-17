@@ -186,6 +186,9 @@ main()
     snmp_close(ss);
     SOCK_CLEANUP;
 
+	if (ricohmib)
+		free(ricohmib);
+
     return exitval;
 
 }                               /* end main() */
