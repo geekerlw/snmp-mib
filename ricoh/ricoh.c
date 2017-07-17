@@ -219,13 +219,13 @@ static void ricohQueJobPrtInit()
 	};
 	const oidObject ricohQueJobPrtNewestIndex = {
 		.description = "Index of entry corresponding to the most recent job in ricohQueJobPrinterEntry.",
-		.oid = ".1.3.6.1.4.1.367.3.2.1.3.2.1.2",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.3.2.1.2.0",
 		.access = 0,
 	};
 
 	const oidObject ricohQueJobPrtControlOperation = {
 		.description = "From remote operation, execution of a job cancellation state and job cancellation.",
-		.oid = ".1.3.6.1.4.1.367.3.2.1.3.2.1.5",
+		.oid = ".1.3.6.1.4.1.367.3.2.1.3.2.1.5.0",
 		.access = 2,
 	};
 

@@ -4,12 +4,12 @@
 #define MAX_OID_NUMS 						0x100
 
 /* enum the access of a oid object */
-const enum accessNum {
+typedef enum accessNum {
 	readOnly,								// 0
 	writeOnly,								// 1
 	readAndWrite,							// 2
-	noneAccessable,							// 3
-};
+	noneAccessable							// 3
+}accessNum;
 
 /* each oid has such properties */
 typedef struct oidObject {
